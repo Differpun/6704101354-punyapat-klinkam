@@ -1,43 +1,20 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <example-component
-      title="Example component"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component>
+  <q-page class="q-pa-md">
+    <q-form @submit="onSubmit" class="q-gutter-md">
+      <q-input filled v-model="name" label="Your name" />
+      <q-input filled type="email" v-model="email" label="Email" />
+      <q-btn label="Submit" type="submit" color="primary" />
+    </q-form>
   </q-page>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue';
-import type { Todo, Meta } from 'components/models';
-import ExampleComponent from 'components/ExampleComponent.vue';
+<script setup>
+import { ref } from 'vue'
 
-const todos = ref<Todo[]>([
-  {
-    id: 1,
-    content: 'ct1'
-  },
-  {
-    id: 2,
-    content: 'ct2'
-  },
-  {
-    id: 3,
-    content: 'ct3'
-  },
-  {
-    id: 4,
-    content: 'ct4'
-  },
-  {
-    id: 5,
-    content: 'ct5'
-  }
-]);
+const name = ref('')
+const email = ref('')
 
-const meta = ref<Meta>({
-  totalCount: 1200
-});
+function onSubmit() {
+  alert(`Name: ${name.value}\nEmail: ${email.value}`)
+}
 </script>
